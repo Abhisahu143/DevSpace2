@@ -44,5 +44,5 @@ A premium, highly-customizable Chrome/Edge New Tab extension crafted for develop
 
 ---
 <div align="center">
-  <i>Designed & Built with 🩵 for peak productivity.</i>
+  <i>Designed & Built with 🩵 Codewithabhiji .</i>
 </div>
