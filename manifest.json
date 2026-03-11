@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "Aksahu Search Engine",
+    "version": "2.0",
+    "description": "A new tab with a custom search engine and beautiful background.",
+    "author": "codewithabhi", 
+    "icons": {
+      "128": "icon/icon.png"
+    },
+    "chrome_url_overrides": {
+      "newtab": "newtab.html"
+    },
+    "host_permissions": ["<all_urls>"],
+    "permissions": ["storage","scripting"]
+    
+  }
+  

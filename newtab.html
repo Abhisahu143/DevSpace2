@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>(⁠•⁠‿⁠•⁠)CodewithAbhi(◉⁠‿⁠◉)</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="background.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="three.min.js"></script>
+    <script src="newtab.js" defer></script>
+    <script src="engine.js"></script>
+    <script src="rotate.js"></script>
+    <script src="threejs-bg.js" defer></script>
+
+</head>
+
+<body>
+    <!-- 3D Animated Background -->
+    <div id="three-container" class="background-container">
+        <!-- Canvas will be injected here by threejs-bg.js -->
+        <div class="glow-effect"></div>
+    </div>
+
+    <div class="container">
+        <!-- Top Left Pro Weather (No Box, Floating) -->
+        <div class="pro-weather-container">
+            <div class="weather-icon-wrapper" id="weatherIconWrapper">
+                <i class="fas fa-cloud-sun"></i>
+            </div>
+            <div class="weather-info">
+                <span id="temperature">--°C</span>
+                <div id="location">Loading...</div>
+            </div>
+        </div>
+
+        <div class="center-content">
+            <!-- Editable Title -->
+            <h1 class="abhi" id="editableTitle" contenteditable="true" aria-placeholder="Your Name...">Coding lover</h1>
+
+            <!-- Search Container -->
+            <div class="search-container">
+                <form id="searchForm" class="search-box" onsubmit="return false;">
+                    <i class="fas fa-search search-icon-left" id="searchBtn" style="cursor: pointer;"></i>
+                    <input type="text" id="searchInput" name="searchInput" placeholder="Search the web..."
+                        autocomplete="on" spellcheck="true" required minlength="1" maxlength="2048" tabindex="0"
+                        aria-label="Search or enter URL" style="pointer-events: auto; user-select: text;">
+
+                </form>
+                <div class="search-suggestions">
+                    <!-- Suggestions will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Quick Access Apps Section -->
+        <div class="app-grid">
+            <div class="app">
+                <a href="https://www.youtube.com" target="_blank" title="YouTube"><img src="icon/youtube (1).png"
+                        alt="YouTube"></a>
+                <a href="https://mail.google.com" target="_blank" title="Gmail"><img src="icon/gmail.png"
+                        alt="Gmail"></a>
+                <a href="https://www.flaticon.com/" target="_blank" title="Flaticon"><img src="icon/flaticon.png"
+                        alt="Flaticon"></a>
+                <a href="https://www.facebook.com" target="_blank" title="Facebook"><img src="icon/facebook.png"
+                        alt="Facebook"></a>
+                <a href="https://www.w3schools.com/" target="_blank" title="W3Schools"><img src="icon/w3schools.png"
+                        alt="W3Schools"></a>
+                <a href="https://www.github.com" target="_blank" title="GitHub"><img src="icon/github.png"
+                        alt="GitHub"></a>
+                <a href="https://fontawesome.com/icons" target="_blank" title="Font Awesome"><img src="icon/hacker.png"
+                        alt="Font Awesome"></a>
+                <a href="https://dash.infinityfree.com/users/10281915" target="_blank" title="Infinity Free"><img
+                        src="icon/infinity.png" alt="Infinity Free"></a>
+                <!-- Add Custom App Button -->
+                <a href="#" id="addCustomApp" title="Add Custom App" class="add-app-btn">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Custom App Modal -->
+        <div id="customAppModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Add Custom App</h2>
+                <form id="customAppForm">
+                    <div class="form-group">
+                        <label for="appName">App Name:</label>
+                        <input type="text" id="appName" required placeholder="e.g., Reddit">
+                    </div>
+                    <div class="form-group">
+                        <label for="appUrl">App URL:</label>
+                        <input type="url" id="appUrl" required placeholder="https://www.google.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="appIcon">Icon URL (optional):</label>
+                        <input type="url" id="appIcon" placeholder="https://example.com/icon.png">
+                    </div>
+                    <!-- Removed specific image upload label, use the input URL -->
+                    <button type="submit" class="submit-btn" style="width: 100%;">Add App</button>
+                    <!-- Removed separate image upload logic since it relies on server, keep base64 functionality if possible or stick to URLs -->
+                </form>
+            </div>
+        </div>
+    </div> <!-- End of .container -->
+
+    <!-- AI Tools Floating Button -->
+    <button id="toggleAiTools" class="toggle-ai-btn" title="Toggle AI Tools">
+        <i class="fas fa-robot"></i>
+    </button>
+
+    <!-- AI Tools Floating Container -->
+    <div class="ai-tools-container hidden">
+        <div class="ai-tools-header">
+
+            <div class="ai-tools-controls">
+                <div class="ai-tools-categories">
+                    <button class="category-btn active" data-category="all">All</button>
+                    <button class="category-btn" data-category="chat">Chat</button>
+                    <button class="category-btn" data-category="image">Image</button>
+                    <button class="category-btn" data-category="code">Code</button>
+                </div>
+            </div>
+        </div>
+        <div class="ai-tools-grid" data-category="all">
+            <!-- Chat AI Tools -->
+            <div class="ai-tool" data-category="chat">
+                <a href="https://gemini.google.com/app?hl=en-IN" target="_blank" title="Google Gemini">
+                    <div class="pro-ai-icon icon-gemini"><i class="fas fa-gem"></i></div><span>Gemini</span>
+                </a>
+            </div>
+            <div class="ai-tool" data-category="chat">
+                <a href="https://www.chatgpt.com" target="_blank" title="ChatGPT">
+                    <div class="pro-ai-icon icon-chatgpt"><i class="fas fa-brain"></i></div><span>ChatGPT</span>
+                </a>
+            </div>
+            <div class="ai-tool" data-category="chat">
+                <a href="https://www.copilot.microsoft.com/" target="_blank" title="Microsoft Copilot">
+                    <div class="pro-ai-icon icon-copilot"><i class="fab fa-microsoft"></i></div><span>Copilot</span>
+                </a>
+            </div>
+            <div class="ai-tool" data-category="chat">
+                <a href="https://grok.com/chat/" target="_blank" title="Grok AI">
+                    <div class="pro-ai-icon icon-grok"><i class="fas fa-bolt"></i></div><span>Grok</span>
+                </a>
+            </div>
+            <div class="ai-tool" data-category="chat">
+                <a href="https://claude.ai" target="_blank" title="Claude AI">
+                    <div class="pro-ai-icon icon-claude"><i class="fas fa-comment-dots"></i></div><span>Claude</span>
+                </a>
+            </div>
+            <div class="ai-tool" data-category="chat">
+                <a href="https://poe.com" target="_blank" title="Poe">
+                    <div class="pro-ai-icon icon-poe"><i class="fas fa-feather-alt"></i></div><span>Poe</span>
+                </a>
+            </div>
+
+            <!-- Image AI Tools -->
+            <div class="ai-tool" data-category="image">
+                <a href="https://www.midjourney.com" target="_blank" title="Midjourney">
+                    <div class="pro-ai-icon icon-midjourney"><i class="fas fa-palette"></i></div><span>Midjourney</span>
+                </a>
+            </div>
+            <div class="ai-tool" data-category="image">
+                <a href="https://www.dall-e.com" target="_blank" title="DALL-E">
+                    <div class="pro-ai-icon icon-dalle"><i class="fas fa-paint-brush"></i></div><span>DALL-E</span>
+                </a>
+            </div>
+            <div class="ai-tool" data-category="image">
+                <a href="https://www.stable-diffusion.com" target="_blank" title="Stable Diffusion">
+                    <div class="pro-ai-icon icon-sd"><i class="fas fa-cube"></i></div><span>Stable Diffusion</span>
+                </a>
+            </div>
+
+            <!-- Code AI Tools -->
+            <div class="ai-tool" data-category="code">
+                <a href="https://github.com/features/copilot" target="_blank" title="GitHub Copilot">
+                    <div class="pro-ai-icon icon-github"><i class="fab fa-github"></i></div><span>GitHub Copilot</span>
+                </a>
+            </div>
+            <div class="ai-tool" data-category="code">
+                <a href="https://www.cursor.sh" target="_blank" title="Cursor">
+                    <div class="pro-ai-icon icon-cursor"><i class="fas fa-terminal"></i></div><span>Cursor</span>
+                </a>
+            </div>
+            <div class="ai-tool" data-category="code">
+                <a href="https://www.tabnine.com" target="_blank" title="Tabnine">
+                    <div class="pro-ai-icon icon-tabnine"><i class="fas fa-code"></i></div><span>Tabnine</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Semi-Circle Bottom Left Clock -->
+    <div class="bottom-left-clock-container">
+        <!-- Celestial Day/Night Tracker Orbit -->
+        <div class="celestial-orbit" id="celestialOrbit">
+            <div class="celestial-body" id="celestialBody">
+                <i class="fas fa-sun"></i>
+            </div>
+        </div>
+
+        <div class="analog-clock">
+            <div class="clock-face">
+                <div class="clock-hand hour-hand" id="hourHand"></div>
+                <div class="clock-hand minute-hand" id="minHand"></div>
+                <div class="clock-hand second-hand" id="secHand"></div>
+                <div class="clock-center"></div>
+            </div>
+        </div>
+        <div class="digital-clock-display">
+            <div id="bottomClock">00:00:00</div>
+            <div id="bottomDate">Loading...</div>
+        </div>
+    </div>
+
+
+
+
+
+
+    </div>
+    <script>
+        (function () {
+            // Disable right-click (single listener)
+            document.addEventListener('contextmenu', function (e) {
+                e.preventDefault();
+                // optional: show a non-intrusive message instead of alert
+                // e.g., show a tiny toast — left out here to keep it simple
+                return false;
+            }, false);
+
+            // Disable common keyboard shortcuts that open devtools or view-source
+            document.addEventListener('keydown', function (e) {
+                const key = e.key || '';
+                const keyCode = e.keyCode || e.which || 0;
+                const kl = key.toString().toLowerCase();
+                const ctrlOrMeta = e.ctrlKey || e.metaKey; // ctrl (Win/Linux) or cmd (Mac)
+                const shift = e.shiftKey;
+
+                const isF12 = keyCode === 123 || kl === 'f12';
+                const isCtrlShiftI = ctrlOrMeta && shift && (kl === 'i' || keyCode === 73);
+                const isCtrlShiftJ = ctrlOrMeta && shift && (kl === 'j' || keyCode === 74);
+                const isCtrlShiftC = ctrlOrMeta && shift && (kl === 'c' || keyCode === 67);
+                const isCtrlU = ctrlOrMeta && (kl === 'u' || keyCode === 85);
+                const isCtrlS = ctrlOrMeta && (kl === 's' || keyCode === 83);
+
+                if (isF12 || isCtrlShiftI || isCtrlShiftJ || isCtrlShiftC || isCtrlU || isCtrlS) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }, false);
+
+            // Basic DevTools detection (heuristic). Not foolproof.
+            // If detected, this will hide page content (or you can redirect).
+            (function devtoolsDetect() {
+                let devtoolsOpen = false;
+                const threshold = 160; // px difference heuristic
+
+                function check() {
+                    const widthDiff = window.outerWidth - window.innerWidth;
+                    const heightDiff = window.outerHeight - window.innerHeight;
+                    const open = widthDiff > threshold || heightDiff > threshold;
+                    if (open && !devtoolsOpen) {
+                        devtoolsOpen = true;
+                        // Example action: hide content and show simple message
+                        document.documentElement.style.display = 'none';
+                        // You may show a message instead of hiding: alert('DevTools detected');
+                    } else if (!open && devtoolsOpen) {
+                        // restore if closed
+                        devtoolsOpen = false;
+                        document.documentElement.style.display = '';
+                    }
+                }
+
+                window.addEventListener('resize', check);
+                setInterval(check, 1000);
+            })();
+
+        })();
+        document.addEventListener('contextmenu', function (event) {
+            event.preventDefault(); // stops the right-click menu
+            alert("Right-click is disabled on this page!");
+        });
+    </script>
+</body>
+
+</html>
