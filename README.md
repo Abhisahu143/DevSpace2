@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌌 DevSpace Browser Extension
+# 🌌 DevSpace2 Browser Extension
 
 A premium, highly-customizable Chrome/Edge New Tab extension crafted for developers, designers, and power users. DevSpace transforms your standard new tab page into a beautiful, functional, and highly efficient dashboard.
 
